@@ -1,0 +1,40 @@
+---
+title: "Diseños lineales mixtos"
+author: "Jhener i vch"
+format: html
+editor: visual
+---
+
+Library
+
+```{r}
+library(tidyselect)
+library(lme4)
+```
+
+#importar datos
+
+```{r}
+# datos de excel
+library(readxl)
+FB <- read_excel("C:/Users/HP/Downloads/LA MOLINA 2014 POTATO WUE (FB).xlsx", 
+    sheet = "fb")
+View(FB)
+```
+
+#modelos
+
+$$ wue_{tuber}= \mu + bloque + riego + geno + riego*geno + e $$ \# Analisis de varianza
+
+```{r}
+md <- lmer(formula = twue ~ 0 + (1|bloque) + riego*geno
+           , data = FB)
+anova(md)
+
+library(car)
+
+Anova(md)
+
+
+
+```
